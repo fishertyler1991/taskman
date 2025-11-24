@@ -36,3 +36,5 @@ mainWindow.show()
 
 #Start loop and handle exit
 sys.exit(mainApp.exec())
+
+#testing beta branch
