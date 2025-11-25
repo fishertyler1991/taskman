@@ -1,6 +1,7 @@
 import sys
 import palaToolkit as ptk
 import PyQt6.QtWidgets as _Q
+from time import time
 
 DEF_X = 100
 DEF_Y = 100
@@ -8,7 +9,8 @@ DEF_W = 800
 DEF_H = 600
 
 def getProcs() -> str:
-    return "Llol"
+    if ptk._checkOS() == ptk.OS_TYPES.UNIX:
+        return "Llol" + str(time())
 
 class TASKMANAPP(_Q.QMainWindow):
     def __init__(self):
@@ -29,7 +31,7 @@ class TASKMANAPP(_Q.QMainWindow):
         self.buttonLabelA.clicked.connect(self.BLA_Clicked)
 
     def BLA_Clicked(self):
-        self.textLabelA.setText("Button Clicked!")
+        self.textLabelA.setText(getProcs())
 
 
 mainApp = _Q.QApplication(sys.argv)

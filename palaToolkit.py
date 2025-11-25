@@ -4,17 +4,23 @@ from enum import Enum
 
 #_checkOS
 # Checks the current OS and returns an snum representation.
-
 class OS_TYPES(Enum):
     UNKNOWN = 0
     WINDOWS = 1
     UNIX = 2
+    INIT = 3
+_OSCAHCE = OS_TYPES.INIT
 
 def _checkOS():
-    osType = OS_TYPES.UNIX
-    if name == 'nt':
-        osType = OS_TYPES.WINDOWS
-    return osType
+    global _OSCAHCE
+    if _OSCAHCE != OS_TYPES.INIT:
+        return _OSCAHCE
+    else:
+        osType = OS_TYPES.UNIX
+        if name == 'nt':
+            osType = OS_TYPES.WINDOWS
+        _OSCAHCE = osType
+        return osType
 
 #_clearConsole
 # Checks if the OS is using windows or not and runs the approiate command to clear the console.
